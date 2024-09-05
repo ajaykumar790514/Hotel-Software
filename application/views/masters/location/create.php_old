@@ -1,0 +1,73 @@
+<!-- form -->
+<form class="form ajaxsubmit reload-tb" action="<?=$action_url?>" method="POST" enctype="multipart/form-data">
+    <div class="form-body">
+        <div class="form-group">
+            <label for="longitude">State</label>
+            <select class="form-control" name="state_id" id="state">
+                <?=(@$states) ? $states : '' ?>
+            </select>
+            
+        </div>
+
+        <div class="form-group">
+            <label for="longitude">City</label>
+            <select class="form-control" name="cityid" id="city">
+                <?=(@$cities) ? $cities : '' ?>
+            </select>
+            
+        </div>
+        
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" class="form-control" placeholder="Name" name="name" value="<?=(@$row->name) ? $row->name : '' ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="loc_name">Location name</label>
+            <input type="text" id="loc_name" class="form-control" placeholder="Location name" name="loc_name" value="<?=(@$row->loc_name) ? $row->loc_name : '' ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="desc">Description</label>
+            <textarea id="desc" class="form-control" placeholder="Description" name="desc" ><?=(@$row->desc) ? $row->desc : '' ?></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="code">Code</label>
+            <input type="text" id="code" class="form-control" placeholder="Code" name="code" value="<?=(@$row->code) ? $row->code : '' ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="longitude">Longitude</label>
+            <input type="text" id="longitude" class="form-control" placeholder="Longitude" name="longitude" value="<?=(@$row->longitude) ? $row->longitude : '' ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="latitude">Latitude</label>
+            <input type="text" id="latitude" class="form-control" placeholder="Latitude" name="latitude" value="<?=(@$row->latitude) ? $row->latitude : '' ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="image">Image url</label>
+            <input type="text" id="image" class="form-control" placeholder="Image url" name="image" value="<?=(@$row->image) ? $row->image : '' ?>">
+        </div>
+        
+    </div>
+
+    <div class="form-actions text-right">
+        <button type="reset" class="btn btn-danger btn-sm mr-1" data-dismiss="modal">
+            <i class="ft-x"></i> Cancel
+        </button>
+        <button type="submit" class="btn btn-primary btn-sm mr-1">
+            <i class="ft-check"></i> Save
+        </button>
+    </div>
+</form>
+<!-- End: form -->
+<script type="text/javascript">
+    $(document).on('change','#state',function (argument) {
+        var id = $(this).val();
+        $('#city').load('<?=base_url()?>getCities/'+id);
+    })
+</script>
+
